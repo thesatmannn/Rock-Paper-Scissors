@@ -1,4 +1,19 @@
-//randomly return rock, paper and scissors
+//get player selection
+const buttons = document.querySelectorAll('button');
+
+
+buttons.forEach((button) => {
+  const playerSelection = (button.id);
+
+  button.addEventListener('click', () => {
+    playRound(playerSelection, computerSelection);
+    
+  });
+});
+
+  
+  
+
 
 function getComputerChoice() {
     let randomChoice = Math.floor(Math.random() * 3) + 1;
@@ -12,13 +27,17 @@ function getComputerChoice() {
       return "Scissors";
     }
   }
+
+
+
+
   // use computerchoice and user input to determine winner of game
 
   function playRound(playerSelection, computerSelection) {
-    if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-      return "It's a tie!"
+    if (playerSelection === computerSelection.toLowerCase()) {
+      console.log("It's a tie!");
     }
-      else if (playerSelection.toLowerCase() === "scissors" && computerSelection.toLowerCase() === "paper" || playerSelection.toLowerCase() === "rock" && computerSelection.toLowerCase() === "scissors" || playerSelection.toLowerCase() === "paper" && computerSelection.toLowerCase() === "rock" ) {
+      else if (playerSelection === "scissors" && computerSelection.toLowerCase() === "paper" || playerSelection === "rock" && computerSelection.toLowerCase() === "scissors" || playerSelection === "paper" && computerSelection.toLowerCase() === "rock" ) {
         console.log("You win! " + playerSelection + " beats " + computerSelection + ".")
         playerScore++;
       }
@@ -31,21 +50,20 @@ function getComputerChoice() {
 
   function game() {
     for (let i = 0; i < 5; i++) {
-      let playerSelection = prompt("Rock, Paper or Scissors?");
       console.log(playRound(playerSelection, getComputerChoice()));
       }
        if ( i = 5 && playerScore > computerScore) {
         console.log("You won the game!");
       }
       else if ( i = 5 && computerScore > playerScore) {
-        console.log("You lose!");
+      console.log("You lose!");
       }
       else {
-        console.log("it's a draw!");
+      console.log("it's a draw!");
       }
     }
   let playerScore = 0;
   let computerScore = 0;
   let computerSelection = getComputerChoice();
-  console.log(game());
+  
   
