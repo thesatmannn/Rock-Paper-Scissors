@@ -1,17 +1,19 @@
-//get player selection
+
 const buttons = document.querySelectorAll('button');
+let playerScore = 0;
+let computerScore = 0;
+let computerSelection = getComputerChoice();
 
-
+//get player selection & computer selection then playround
 buttons.forEach((button) => {
-  const playerSelection = (button.id);
-
-  button.addEventListener('click', () => {
-    playRound(playerSelection, computerSelection);
-    
+  button.addEventListener('click', function (e) {
+  let playerSelection = (button.id);
+  
+  playRound(playerSelection, getComputerChoice());
   });
 });
 
-  
+
   
 
 
@@ -36,6 +38,7 @@ function getComputerChoice() {
   function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection.toLowerCase()) {
       console.log("It's a tie!");
+      
     }
       else if (playerSelection === "scissors" && computerSelection.toLowerCase() === "paper" || playerSelection === "rock" && computerSelection.toLowerCase() === "scissors" || playerSelection === "paper" && computerSelection.toLowerCase() === "rock" ) {
         console.log("You win! " + playerSelection + " beats " + computerSelection + ".")
@@ -62,8 +65,6 @@ function getComputerChoice() {
       console.log("it's a draw!");
       }
     }
-  let playerScore = 0;
-  let computerScore = 0;
-  let computerSelection = getComputerChoice();
+  
   
   
