@@ -3,18 +3,21 @@ const buttons = document.querySelectorAll('button');
 let playerScore = 0;
 let computerScore = 0;
 let computerSelection = getComputerChoice();
+const roundScore = document.createElement('div');
+
+const container =document.querySelector('#container');
+  const score = document.createElement('div');
+  score.textContent ="Player Score: " + playerScore + " " + "Computer Score: " + computerScore;
+  container.appendChild(score);
 
 //get player selection & computer selection then playround
+
 buttons.forEach((button) => {
   button.addEventListener('click', function (e) {
   let playerSelection = (button.id);
-  
   playRound(playerSelection, getComputerChoice());
   });
 });
-
-
-  
 
 
 function getComputerChoice() {
@@ -30,29 +33,31 @@ function getComputerChoice() {
     }
   }
 
-
-
-
   // use computerchoice and user input to determine winner of game
 
   function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection.toLowerCase()) {
-      console.log("It's a tie!");
+      
+      roundScore.textContent = "It's a tie!";
+      container.appendChild(roundScore);
       
     }
       else if (playerSelection === "scissors" && computerSelection.toLowerCase() === "paper" || playerSelection === "rock" && computerSelection.toLowerCase() === "scissors" || playerSelection === "paper" && computerSelection.toLowerCase() === "rock" ) {
-        console.log("You win! " + playerSelection + " beats " + computerSelection + ".")
+
+        roundScore.textContent = "You win! " + playerSelection + " beats " + computerSelection + "."
+        container.appendChild(roundScore);
         playerScore++;
       }
       else {
-        console.log("You lose! " + computerSelection + " beats " + playerSelection + ".")
+        roundScore.textContent = "You lose! " + computerSelection + " beats " + playerSelection + ".";
+        container.appendChild(roundScore);
         computerScore++;
       }
   }
   //keep track of rounds and tally score 
 
   function game() {
-    for (let i = 0; i < 5; i++) {
+    if play
       console.log(playRound(playerSelection, getComputerChoice()));
       }
        if ( i = 5 && playerScore > computerScore) {
