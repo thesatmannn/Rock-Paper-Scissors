@@ -1,25 +1,44 @@
+//declare global variables
 
 const buttons = document.querySelectorAll('button');
 let playerScore = 0;
 let computerScore = 0;
 let computerSelection = getComputerChoice();
 const roundScore = document.createElement('div');
+const gameResult = document.createElement('div');
 
-const container =document.querySelector('#container');
+//create div to display round score
+
+const container = document.querySelector('#container');
   const score = document.createElement('div');
-  score.textContent ="Player Score: " + playerScore + " " + "Computer Score: " + computerScore;
-  container.appendChild(score);
+  
 
-//get player selection & computer selection then playround
+//get player selection & computer selection then playround until a score of 5 is reached
 
 buttons.forEach((button) => {
   button.addEventListener('click', function (e) {
   let playerSelection = (button.id);
   playRound(playerSelection, getComputerChoice());
+  score.textContent ="Player Score: " + playerScore + " " + "Computer Score: " + computerScore;
+  container.appendChild(score);
+
+  if (playerScore == 5 && computerScore < 5) {
+    gameResult.textContent = "You won the game! Refresh to play again!";
+    container.appendChild(gameResult);
+    }
+  else if (computerScore == 5 && playerScore < 5) {
+      gameResult.textContent = "You lose! Refresh to play again!";
+      container.appendChild(gameResult);
+    }
+    else if (playerScore == 5 && computerScore == 5) {
+      gameResult.textContent = "it's a draw! Refresh to play again!";
+      container.appendChild(gameResult);
+    }
   });
 });
 
 
+//get computer choice
 function getComputerChoice() {
     let randomChoice = Math.floor(Math.random() * 3) + 1;
     if (randomChoice === 1) {
@@ -40,15 +59,14 @@ function getComputerChoice() {
       
       roundScore.textContent = "It's a tie!";
       container.appendChild(roundScore);
-      
     }
-      else if (playerSelection === "scissors" && computerSelection.toLowerCase() === "paper" || playerSelection === "rock" && computerSelection.toLowerCase() === "scissors" || playerSelection === "paper" && computerSelection.toLowerCase() === "rock" ) {
+    else if (playerSelection === "scissors" && computerSelection.toLowerCase() === "paper" || playerSelection === "rock" && computerSelection.toLowerCase() === "scissors" || playerSelection === "paper" && computerSelection.toLowerCase() === "rock" ) {
 
         roundScore.textContent = "You win! " + playerSelection + " beats " + computerSelection + "."
         container.appendChild(roundScore);
         playerScore++;
       }
-      else {
+    else {
         roundScore.textContent = "You lose! " + computerSelection + " beats " + playerSelection + ".";
         container.appendChild(roundScore);
         computerScore++;
@@ -57,19 +75,19 @@ function getComputerChoice() {
   //keep track of rounds and tally score 
 
   function game() {
-    if play
-      console.log(playRound(playerSelection, getComputerChoice()));
+    if (playerScore == 5 && computerScore < 5) {
+      gameResult.textContent = "You won the game! Refresh to play again!";
+      container.appendChild(gameResult);
       }
-       if ( i = 5 && playerScore > computerScore) {
-        console.log("You won the game!");
+    else if (computerScore == 5 && playerScore < 5) {
+        gameResult.textContent = "You lose! Refresh to play again!";
+        container.appendChild(gameResult);
       }
-      else if ( i = 5 && computerScore > playerScore) {
-      console.log("You lose!");
+    else if (playerScore == 5 && computerScore == 5) {
+        gameResult.textContent = "it's a draw! Refresh to play again!";
+        container.appendChild(gameResult);
       }
-      else {
-      console.log("it's a draw!");
-      }
-    }
+  }
   
   
   
