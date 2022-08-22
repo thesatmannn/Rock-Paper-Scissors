@@ -14,29 +14,14 @@ const container = document.querySelector('#container');
   
 
 //get player selection & computer selection then playround until a score of 5 is reached
-
 buttons.forEach((button) => {
   button.addEventListener('click', function (e) {
   let playerSelection = (button.id);
-  playRound(playerSelection, getComputerChoice());
+  isGameOver(playRound(playerSelection, getComputerChoice()));
   score.textContent ="Player Score: " + playerScore + " " + "Computer Score: " + computerScore;
   container.appendChild(score);
-
-  if (playerScore == 5 && computerScore < 5) {
-    gameResult.textContent = "You won the game! Refresh to play again!";
-    container.appendChild(gameResult);
-    }
-  else if (computerScore == 5 && playerScore < 5) {
-      gameResult.textContent = "You lose! Refresh to play again!";
-      container.appendChild(gameResult);
-    }
-    else if (playerScore == 5 && computerScore == 5) {
-      gameResult.textContent = "it's a draw! Refresh to play again!";
-      container.appendChild(gameResult);
-    }
   });
 });
-
 
 //get computer choice
 function getComputerChoice() {
@@ -53,8 +38,9 @@ function getComputerChoice() {
   }
 
   // use computerchoice and user input to determine winner of game
-
+  
   function playRound(playerSelection, computerSelection) {
+    
     if (playerSelection === computerSelection.toLowerCase()) {
       
       roundScore.textContent = "It's a tie!";
@@ -72,20 +58,24 @@ function getComputerChoice() {
         computerScore++;
       }
   }
-  //keep track of rounds and tally score 
 
-  function game() {
+  //ends game when a score of 5 is reached and prompts player to refresh page
+
+  function isGameOver() {
     if (playerScore == 5 && computerScore < 5) {
       gameResult.textContent = "You won the game! Refresh to play again!";
-      container.appendChild(gameResult);
+      container.appendChild(gameResult); 
+      playRound = false;
       }
     else if (computerScore == 5 && playerScore < 5) {
         gameResult.textContent = "You lose! Refresh to play again!";
         container.appendChild(gameResult);
+        playRound = false;
       }
     else if (playerScore == 5 && computerScore == 5) {
         gameResult.textContent = "it's a draw! Refresh to play again!";
         container.appendChild(gameResult);
+        playRound = false;
       }
   }
   
