@@ -18,6 +18,7 @@ buttons.forEach((button) => {
   button.addEventListener('click', function (e) {
   let playerSelection = (button.id);
   isGameOver(playRound(playerSelection, getComputerChoice()));
+  score.style.color = 'aliceblue';
   score.textContent ="Player Score: " + playerScore + " " + "Computer Score: " + computerScore;
   container.appendChild(score);
   });
@@ -64,20 +65,31 @@ function getComputerChoice() {
   function isGameOver() {
     if (playerScore == 5 && computerScore < 5) {
       gameResult.textContent = "You won the game! Refresh to play again!";
+      gameResult.setAttribute('style', 'color: green;');
+      gameResult.style.FontSize = '40px';
       container.appendChild(gameResult); 
       playRound = false;
       }
     else if (computerScore == 5 && playerScore < 5) {
-        gameResult.textContent = "You lose! Refresh to play again!";
+        gameResult.textContent = "You lost the game! Refresh to play again!";
+        gameResult.setAttribute('style', 'color: red;');
+        gameResult.style.FontSize = '40px';
         container.appendChild(gameResult);
         playRound = false;
       }
     else if (playerScore == 5 && computerScore == 5) {
         gameResult.textContent = "it's a draw! Refresh to play again!";
+        gameResult.setAttribute('style', 'color: white;');
+        gameResult.style.FontSize = '40px';
         container.appendChild(gameResult);
         playRound = false;
       }
   }
   
+  // style page, text and buttons
+
+
+
+
   
   
